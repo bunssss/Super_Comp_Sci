@@ -11,7 +11,7 @@ public class Reply extends Message {
 
 	// Parameterized Constructor
 	public Reply(String auth, String subj, String bod, int i) {
-		
+		super(auth, subj, bod, i);
 	}
 
 	// Returns if this is a reply (true)

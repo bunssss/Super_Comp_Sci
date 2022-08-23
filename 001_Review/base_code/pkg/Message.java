@@ -3,6 +3,11 @@ import java.util.*;
 import java.io.*;
 
 public class Message {
+	
+	private String auth;
+	private String subj;
+	private String bod;
+	private int i;
 
 	// Default Constructor
 	public Message() {
@@ -11,7 +16,10 @@ public class Message {
 	
 	// Parameterized Constructor
 	public Message(String auth, String subj, String bod, int i) {
-		
+		this.auth = auth;
+		this.subj = subj;
+		this.bod = bod;
+		this.i = i;
 	}
 
 	// This function is responsbile for printing the Message

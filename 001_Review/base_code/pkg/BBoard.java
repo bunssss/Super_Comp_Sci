@@ -4,22 +4,31 @@ import java.io.*;
 
 public class BBoard {		// This is your main file that connects all classes.
 	// Think about what your global variables need to be.
+	private String ttl;
+	private ArrayList<String> msglists = new ArrayList<String>();
+	private ArrayList<User> userlists = new ArrayList<User>();
+	private User currentUser;
 
 	// Default constructor that creates a board with a defaulttitle, empty user and message lists,
 	// and no current user
 	public BBoard() {
-		
+		// ttl = "defaulttitle";
+		msglists.add("")
+		userlists
 	}
 
 	// Same as the default constructor except it sets the title of the board
 	public BBoard(String ttl) {	
+		// this.ttl = ttl;
+		// msglists
+		// userlists
 	}
 
 	// Gets a filename of a file that stores the user info in a given format (users.txt)
 	// Opens and reads the file of all authorized users and passwords
 	// Constructs a User object from each name/password pair, and populates the userList ArrayList.
 	public void loadUsers(String inputFile) throws FileNotFoundException {
-
+		
 	}
 
 	// Asks for and validates a user/password. 
@@ -28,6 +37,39 @@ public class BBoard {		// This is your main file that connects all classes.
 	// If not, it will keep asking until a match is found or the user types 'q' or 'Q' as username to quit
 	// When the users chooses to quit, sayu "Bye!" and return from the login function
 	public void login(){
+		Scanner sc = new Scanner(System.in);
+		boolean success = false;
+		
+		while(success = false){
+		System.out.println("Username: ");
+		String name = sc.nextLine();
+		System.out.println("Password: ");
+		String pass = sc.nextLine();
+		
+		
+		for(int x; x < userlists.Size(); x++) {
+			String uname = userlists.get(x).getUsername;
+			if(name.equals(uname)){
+				if(userlists.get(x).check(name, pass)){
+					success = true;
+					break;
+				}
+			}
+		}
+		
+		if(success == false) {
+			System.out.println("Invalid Username/Password");
+		}
+		
+		if(name.equals("q")){
+			System.out.println("Bye!");
+			break;
+		}
+		
+		}
+		
+		return;
+		
 
 	}
 	
@@ -42,6 +84,31 @@ public class BBoard {		// This is your main file that connects all classes.
 	// Q/q should reset the currentUser to 0 and then end return
 	// Note: if login() did not set a valid currentUser, function must immediately return without showing menu
 	public void run(){
+		Scanner sc = new Scanner(System.in);
+		String input;
+		
+		while(currentUser != null){
+			
+			System.out.print("Display Messages ('D' or 'd') \nAdd New Topic('N' or 'n') \nAdd Reply ('R' or 'r') \nChange Password ('P or 'p') \nQuit ('Q' or 'q')");
+			input = sc.nextLine();
+			
+			if(input.equals("D") || input.equals("d")){
+				display();
+			}
+			else if(input.equals("N") || input.equals("n")){
+				
+			}
+			else if(input.equals("R") || input.equals("r")){
+				
+			}
+			else if(input.equals("P") || input.equals("p")){
+				setPassword();
+			}
+			else if(input.equals("Q") || input.equals("q")){
+				System.out.println("Bye!");
+			}
+			
+		}
 
 	}
 
@@ -112,6 +179,39 @@ public class BBoard {		// This is your main file that connects all classes.
 	// Any password is allowed except 'c' or 'C' for allowing the user to quit out to the menu. 
 	// Once entered, the user will be told "Password Accepted." and returned to the menu.
 	private void setPassword(){
+		Scanner sc = new Scanner(System.in);
+		boolean success = false;
+		String old;
+		String newPass;
+		
+		while(success == false) {
+		System.out.println("Enter old password: ");
+		old = sc.nextLine();
+		if(currentUser.check((currentUser.getUsername()), old)){
+			success == true;
+			}
+			else{
+				System.out.println("Invalid Password! Try Again.")
+				System.out.println("");
+			}
+		}
+		
+		success = false;
+		
+		while(success == false){
+			System.out.println("Enter new password: ");
+			newPass = sc.nextLine();
+			
+			if(newPass.equals("c") || newPass.equals("C")){
+				System.out.println("You cant use c or C as your new password!");
+			}
+			else{
+			currentUser.setPassword(old, newPass);
+			success = true;
+			}
+		}
+		
+		return;
 		
 	}
 
