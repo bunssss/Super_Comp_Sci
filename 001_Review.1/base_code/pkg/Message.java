@@ -8,7 +8,10 @@ public class Message {
 	String subj;
 	String bod;
 	int i;
+<<<<<<< HEAD:001_Review.1/base_code/pkg/Message.java
 	ArrayList<Message> childList = new ArrayList<Message>();
+=======
+>>>>>>> 34537ad3b97982c5463bc615eedf08edefca8a8f:001_Review/base_code/pkg/Message.java
 
 	// Default Constructor
 	public Message() {
@@ -64,7 +67,11 @@ public class Message {
 
 	// Returns the ID
 	public int getId(){
+<<<<<<< HEAD:001_Review.1/base_code/pkg/Message.java
 	 return i;	
+=======
+		return i;
+>>>>>>> 34537ad3b97982c5463bc615eedf08edefca8a8f:001_Review/base_code/pkg/Message.java
 	}
 
 	// Adds a child pointer to the parent's childList.
