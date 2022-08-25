@@ -4,10 +4,10 @@ import java.io.*;
 
 public class Message {
 	
-	private String auth;
-	private String subj;
-	private String bod;
-	private int i;
+	String auth;
+	String subj;
+	String bod;
+	int i;
 
 	// Default Constructor
 	public Message() {
@@ -42,12 +42,12 @@ public class Message {
 
 	// Returns the subject String
 	public String getSubject(){
-		
+		return subj;
 	} 
 
 	// Returns the ID
 	public int getId(){
-		
+		return i;
 	}
 
 	// Adds a child pointer to the parent's childList.
