@@ -90,6 +90,10 @@ public class BBoard {		// This is your main file that connects all classes.
 		
 		login();
 		
+		if(currentUser = null){
+			return;
+		}
+		
 		while(currentUser != null){
 			
 			System.out.print("Display Messages ('D' or 'd') \nAdd New Topic('N' or 'n') \nAdd Reply ('R' or 'r') \nChange Password ('P or 'p') \nQuit ('Q' or 'q')");
@@ -109,6 +113,8 @@ public class BBoard {		// This is your main file that connects all classes.
 			}
 			else if(input.equals("Q") || input.equals("q")){
 				System.out.println("Bye!");
+				currentUser = null;
+				return;
 			}
 			
 		}
