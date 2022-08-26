@@ -5,31 +5,46 @@ import java.io.*;
 public class BBoard {		// This is your main file that connects all classes.
 	// Think about what your global variables need to be.
 	private String ttl;
-	private ArrayList<Message> msglists = new ArrayList<Message>();
-	private ArrayList<User> userlists = new ArrayList<User>();
+	private ArrayList<Message> msglists;
+	private ArrayList<User> userlists;
 	private User currentUser;
 
 	// Default constructor that creates a board with a defaulttitle, empty user and message lists,
 	// and no current user
 	public BBoard() {
-		// ttl = "defaulttitle";
-		// msglists.add("")
-	
+		ttl = "defaulttitle";
+		msglists = new ArrayList<Message>();
+		userlists = new ArrayList<User>();
+		currentUser = null;
 	}
 
 	// Same as the default constructor except it sets the title of the board
 	public BBoard(String ttl) {	
-		// this.ttl = ttl;
-		// msglists
-		// userlists
+		this.ttl = ttl;
+		msglists = new ArrayList<Message>();
+		userlists = new ArrayList<User>();
+		currentUser = null;
 	}
 
 	// Gets a filename of a file that stores the user info in a given format (users.txt)
 	// Opens and reads the file of all authorized users and passwords
 	// Constructs a User object from each name/password pair, and populates the userList ArrayList.
 	public void loadUsers(String inputFile) throws FileNotFoundException {
-		
+		File file = new File(inputFile);
+        Scanner sc = new Scanner(file);
+        String current;
+        String username;
+        String password;
+        User user;
+        while(sc.hasNext()){
+            current = sc.nextLine();
+            int breaker = current.indexOf(" ");
+            username = current.substring(0, breaker);
+            password = current.substring(breaker+1);
+            user = new User(username, password);
+            userlists.add(user);
 	}
+}
 
 	// Asks for and validates a user/password. 
 	// This function asks for a username and a password, then checks the userList ArrayList for a matching User.
@@ -90,13 +105,13 @@ public class BBoard {		// This is your main file that connects all classes.
 		
 		login();
 		
-		if(currentUser = null){
+		if(currentUser == null){
 			return;
 		}
 		
 		while(currentUser != null){
 			
-			System.out.print("Display Messages ('D' or 'd') \nAdd New Topic('N' or 'n') \nAdd Reply ('R' or 'r') \nChange Password ('P or 'p') \nQuit ('Q' or 'q')");
+			System.out.print("--- Display Messages ('D' or 'd') \n--- Add New Topic('N' or 'n') \n--- Add Reply ('R' or 'r') \n--- Change Password ('P or 'p') \n--- Quit ('Q' or 'q')");
 			input = sc.nextLine();
 			
 			if(input.equals("D") || input.equals("d")){
