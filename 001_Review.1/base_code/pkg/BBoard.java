@@ -5,16 +5,16 @@ import java.io.*;
 public class BBoard {		// This is your main file that connects all classes.
 	// Think about what your global variables need to be.
 	private String ttl;
-	private ArrayList<String> msglists = new ArrayList<String>();
+	private ArrayList<Message> msglists = new ArrayList<Message>();
 	private ArrayList<User> userlists = new ArrayList<User>();
 	private User currentUser;
 
 	// Default constructor that creates a board with a defaulttitle, empty user and message lists,
 	// and no current user
 	public BBoard() {
-		ttl = "defaulttitle";
-		msglists.add("")
-		userlists
+		// ttl = "defaulttitle";
+		// msglists.add("")
+	
 	}
 
 	// Same as the default constructor except it sets the title of the board
@@ -47,12 +47,12 @@ public class BBoard {		// This is your main file that connects all classes.
 		String pass = sc.nextLine();
 		
 		
-		for(int x; x < userlists.Size(); x++) {
-			String uname = userlists.get(x).getUsername;
+		for(int x = 0; x < userlists.size(); x++) {
+			String uname = userlists.get(x).getUsername();
 			if(name.equals(uname)){
 				if(userlists.get(x).check(name, pass)){
 					success = true;
-					currentUser = userlists
+					currentUser = userlists.get(x);
 					break;
 				}
 			}
@@ -119,9 +119,16 @@ public class BBoard {		// This is your main file that connects all classes.
 	// It will then be the responsibility of the Topic object to invoke the print function recursively on its own replies
 	// The BBoard display function will ignore all reply objects in its message list
 	private void display(){
-		for(int c = 0; c < messageList.getSize(); c++){
-			if(messageList.get(c).isReply() = false){
-				messageList.get(c).print(0);
+
+		Message a = new Message();
+
+		for(int c = 0; c < msglists.size(); c++){
+
+			a = msglists.get(c);
+			boolean rep = a.isReply();
+
+			if(rep == false){
+				msglists.get(c).print(0);
 			}
 		}
 	}
@@ -144,7 +151,7 @@ public class BBoard {		// This is your main file that connects all classes.
 	private void addTopic(){
 		Scanner sc = new Scanner(System.in);
 		String author = currentUser.getUsername();
-		int id = (messageList.getSize()+1);
+		int id = (msglists.size()+1);
 		
 		System.out.println("Subject: ");
 		String subject = sc.nextLine();
@@ -152,8 +159,8 @@ public class BBoard {		// This is your main file that connects all classes.
 		String body = sc.nextLine();
 		
 		
-		Topic topic = new Topic(author, subject, body, id)
-		messageList.add(topic);
+		Topic topic = new Topic(author, subject, body, id);
+		msglists.add(topic);
 	}
 
 	// This function asks the user to enter a reply to a given Message (which may be either a Topic or a Reply, so we can handle nested replies).
@@ -197,38 +204,47 @@ public class BBoard {		// This is your main file that connects all classes.
 	// Any password is allowed except 'c' or 'C' for allowing the user to quit out to the menu. 
 	// Once entered, the user will be told "Password Accepted." and returned to the menu.
 	private void setPassword(){
+
 		Scanner sc = new Scanner(System.in);
 		boolean success = false;
 		String old;
 		String newPass;
 		
-		while(success == false) {
-		System.out.println("Enter old password: ");
-		old = sc.nextLine();
-		if(currentUser.check((currentUser.getUsername()), old)){
-			success == true;
-			}
-			else{
-				System.out.println("Invalid Password! Try Again.")
-				System.out.println("");
-			}
-		}
-		
-		success = false;
-		
+
 		while(success == false){
-			System.out.println("Enter new password: ");
-			newPass = sc.nextLine();
-			
-			if(newPass.equals("c") || newPass.equals("C")){
-				System.out.println("You cant use c or C as your new password!");
+
+			System.out.println("Enter old password: ");
+			old = sc.nextLine();
+
+			if(old.equals("c") || old.equals("c")){
+				run();
 			}
-			else{
-			currentUser.setPassword(old, newPass);
-			success = true;
+
+			if(currentUser.check((currentUser.getUsername()), old)){
+
+				while(true){
+				System.out.println("Enter new password: ");
+				newPass = sc.nextLine();
+
+				if(newPass.equals("c") || newPass.equals("C")){
+					System.out.println("You cant use c or C as your new password! \nTry Again!");
+					System.out.println("---------------------------");
+				}
+				else {
+					currentUser.setPassword(old, newPass);
+					success = true;
+					break;
+				}
 			}
-		}
+		} 
 		
+		else {
+			System.out.println("Invalid Password \nTry Again!");
+			System.out.println("---------------------------");
+		}
+
+	}
+	
 		return;
 		
 	}

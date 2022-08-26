@@ -8,10 +8,9 @@ public class Message {
 	String subj;
 	String bod;
 	int i;
-<<<<<<< HEAD:001_Review.1/base_code/pkg/Message.java
+
 	ArrayList<Message> childList = new ArrayList<Message>();
-=======
->>>>>>> 34537ad3b97982c5463bc615eedf08edefca8a8f:001_Review/base_code/pkg/Message.java
+
 
 	// Default Constructor
 	public Message() {
@@ -45,8 +44,8 @@ public class Message {
 		
 		System.out.println("Subject: " + indent + subj + "\nAuthor: " + indent + auth + "\nBody: " + indent + bod);
 		
-		if(childList.getSize() > 0){
-			for(int c = 0; c < childList.getSize(); c++){
+		if(childList.size() > 0){
+			for(int c = 0; c < childList.size(); c++){
 				int n = indentation + 1;
 				print(n);
 			}
@@ -67,11 +66,9 @@ public class Message {
 
 	// Returns the ID
 	public int getId(){
-<<<<<<< HEAD:001_Review.1/base_code/pkg/Message.java
+
 	 return i;	
-=======
-		return i;
->>>>>>> 34537ad3b97982c5463bc615eedf08edefca8a8f:001_Review/base_code/pkg/Message.java
+
 	}
 
 	// Adds a child pointer to the parent's childList.
