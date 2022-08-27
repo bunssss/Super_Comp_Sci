@@ -42,12 +42,13 @@ public class Message {
 			indent = (indent + "  ");
 		}
 		
-		System.out.println("Subject: " + indent + subj + "\nAuthor: " + indent + auth + "\nBody: " + indent + bod);
+		System.out.println(indent + "Subject: " + subj + " " + "(" + i + ")" + "\n" + indent + "Author: " + auth + "\n" + indent + "Body: " + bod);
+		System.out.println();
 		
 		if(childList.size() > 0){
 			for(int c = 0; c < childList.size(); c++){
 				int n = indentation + 1;
-				print(n);
+				childList.get(c).print(n);
 			}
 		}
 		

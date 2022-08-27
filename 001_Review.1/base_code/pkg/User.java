@@ -30,11 +30,11 @@ public class User {
 	public boolean check(String usr, String pwd){
 		
 		if((usr.equals(this.usr)) && (pwd.equals(this.pwd))){
-			System.out.println("correct");
+		
 			return true;
 		}
 		else{
-			System.out.println("false");
+		
 			return false;
 		}
 	}
