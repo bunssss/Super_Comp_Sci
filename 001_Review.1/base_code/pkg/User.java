@@ -29,6 +29,8 @@ public class User {
 	// This function must still return false if given an empty username string.  
 	public boolean check(String usr, String pwd){
 		
+		//O(n)
+		
 		if((usr.equals(this.usr)) && (pwd.equals(this.pwd))){
 		
 			return true;
@@ -44,6 +46,9 @@ public class User {
 	// Also, a default User cannot have its password changed. 
 	// Return true if password changed, return false if not.
 	public boolean setPassword(String oldPass, String newPass){
+		
+		//O(n)
+		
 		if(oldPass.equals(pwd)) {
 			pwd = newPass;
 			return true;
