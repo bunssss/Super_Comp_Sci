@@ -15,17 +15,19 @@ class main {
 		int [] times = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
 		int [] nums = new int[100];
 
+		
 
 		System.out.println("-------------------Test-------------------");
 		System.out.println("");
 		for(int i : times){
 			System.out.println("Interval: " + i);
 			
+			BaseClass.Randomize(nums);
 			nums = new int[i];
 			start = System.nanoTime();
 
 			//  Put your method between these two comments
-				BaseClass.bubbleSort(nums);
+				BaseClass.selectionSort(nums);
 			//
 
 			finish = System.nanoTime();
